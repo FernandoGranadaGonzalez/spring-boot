@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8">
+        <title>Predicción</title>
+        <style>
+            .uv-verde { color: green; font-weight: bold; }
+            .uv-naranja { color: orange; font-weight: bold; }
+            .uv-rojo { color: red; font-weight: bold; }
+        </style>
+    </head>
+    <body>
+        <h1>Previsión Meteorológica</h1>
+        <table>
+            <thead>
+            <tr>
+                <th th:each="p : ${semana}" th:text="${#temporals.format(p.fecha, 'dd/MM')}"></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td th:each="p : ${semana}">
+                    <img th:src="${p.getImagenUrl()}" alt="clima"><br>
+                    <span th:text="${p.probPrecipitacion} + '%'"></span>
+                </td>
+            </tr>
+            <tr>
+                <td th:each="p : ${semana}">
+                    Min: <span th:text="${p.tempMin}"></span>° /
+                    Max: <span th:text="${p.tempMax}"></span>°
+                </td>
+            </tr>
+            <tr>
+                <td th:each="p : ${semana}">
+                    UV: <span th:text="${p.nivelUV}"
+                              th:class="${p.nivelUV <= 1 ? 'uv-verde' : (p.nivelUV <= 3 ? 'uv-naranja' : 'uv-rojo')}">
+                        </span>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </body>
+</html>
