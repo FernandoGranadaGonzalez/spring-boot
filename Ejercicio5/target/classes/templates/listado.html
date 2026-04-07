@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta charset="UTF-8">
+        <title>Listado de Personas</title>
+        <style>
+            table { border-collapse: collapse; width: 100%; }
+            th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+            th { background-color: #f2 f2 f2; }
+        </style>
+    </head>
+    <body>
+        <h1>Listado de 10 personas aleatorias</h1>
+        <table>
+            <thead>
+            <tr>
+                <th>Nombre</th>
+                <th>Apellidos</th>
+                <th>DNI</th>
+                <th>Edad</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="p : ${personas}">
+                <td th:text="${p.nombre}"></td>
+                <td th:text="${p.apellidos}"></td>
+                <td th:text="${p.dni}"></td>
+                <td th:text="${p.getEdad()}"></td>
+            </tr>
+            </tbody>
+        </table>
+        <br>
+        <a href="/">Volver al inicio</a>
+    </body>
+</html>
